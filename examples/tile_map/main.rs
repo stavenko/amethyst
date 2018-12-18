@@ -1,6 +1,6 @@
 use amethyst;
 
-mod pong;
+mod pawn;
 
 use amethyst::{
     core::transform::TransformBundle,
@@ -12,11 +12,11 @@ use amethyst::{
 fn main() -> amethyst::Result<()> {
     amethyst::start_logger(Default::default());
 
-    use crate::pong::Pong;
+    use crate::pawn::Field;
 
     let app_root = application_root_dir()?;
 
-    let path = app_root.join("examples/pong_tutorial_02/resources/display_config.ron");
+    let path = app_root.join("examples/tile_map/resources/display_config.ron");
     let config = DisplayConfig::load(&path);
 
     let pipe = Pipeline::build().with_stage(
@@ -32,7 +32,7 @@ fn main() -> amethyst::Result<()> {
     // of the git repository. It only is a different location to load the assets from.
     let assets_dir = app_root.join("examples/assets/");
 
-    let mut game = Application::new(assets_dir, Pong, game_data)?;
+    let mut game = Application::new(assets_dir, Field, game_data)?;
     game.run();
     Ok(())
 }
